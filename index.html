@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Fardin Ahmed - Assistant Manager HR & Compliance">
+    <title>Fardin Ahmed | HR Professional Portfolio</title>
+    
+    <!-- Fonts: Poppins & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons: FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            900: '#0F172A',
+                            800: '#1E293B',
+                            50: '#F8FAFC',
+                        },
+                        sky: {
+                            400: '#38BDF8',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Glassmorphism & Utilities */
+        body {
+            background-color: #0F172A;
+            color: #F8FAFC;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0F172A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #38BDF8;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0ea5e9;
+        }
+
+        /* Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .skill-bar-fill {
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-sky-400 selection:text-slate-900">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <h1 class="font-heading text-2xl font-bold tracking-tight text-white">
+                        Fardin<span class="text-sky-400">Ahmed</span>
+                    </h1>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#about" class="hover:text-sky-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="#skills" class="hover:text-sky-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Skills</a>
+                        <a href="#experience" class="hover:text-sky-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Experience</a>
+                        <a href="#education" class="hover:text-sky-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Education</a>
+                        <a href="#contact" class="bg-sky-400 text-slate-900 hover:bg-sky-300 px-4 py-2 rounded-full text-sm font-semibold transition-all shadow-lg shadow-sky-400/20">Contact Me</a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" onclick="toggleMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-slate-800 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-slate-800 border-t border-slate-700" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" onclick="toggleMenu()" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#skills" onclick="toggleMenu()" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Skills</a>
+                <a href="#experience" onclick="toggleMenu()" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Experience</a>
+                <a href="#education" onclick="toggleMenu()" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Education</a>
+                <a href="#contact" onclick="toggleMenu()" class="text-sky-400 block px-3 py-2 rounded-md text-base font-medium">Contact Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-24 pb-12 overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-sky-400/10 rounded-full blur-3xl -z-10 animate-float"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl -z-10 animate-float" style="animation-delay: 2s;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
+            
+            <!-- Text Content -->
+            <div class="text-center lg:text-left order-2 lg:order-1">
+                <div class="inline-block px-4 py-1.5 mb-6 rounded-full glass-card border-sky-400/30 text-sky-400 text-sm font-medium tracking-wide reveal">
+                    HR & COMPLIANCE SPECIALIST
+                </div>
+                
+                <h1 class="text-5xl md:text-6xl font-heading font-extrabold text-white mb-6 leading-tight reveal" style="transition-delay: 100ms;">
+                    Driving Workforce <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-500">Excellence.</span>
+                </h1>
+                
+                <p class="mt-4 max-w-2xl lg:mx-0 mx-auto text-lg md:text-xl text-slate-400 mb-10 reveal" style="transition-delay: 200ms;">
+                    5+ Years of experience in Corporate HR, Compliance & Labour Law. Based in Dhaka.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start reveal" style="transition-delay: 300ms;">
+                    <a href="Profile.pdf" class="px-8 py-4 bg-sky-400 text-slate-900 rounded-lg font-bold hover:bg-sky-300 transition-all shadow-lg shadow-sky-400/20 transform hover:-translate-y-1">
+                        Get in Touch
+                    </a>
+                    <button onclick="downloadResume()" class="px-8 py-4 glass-card text-white rounded-lg font-bold hover:bg-white/10 transition-all border border-slate-600 flex items-center justify-center gap-2">
+                        <i class="fas fa-download"></i> Download Resume
+                    </button>
+                </div>
+            </div>
+
+            <!-- Image Content -->
+            <div class="order-1 lg:order-2 flex justify-center lg:justify-end reveal-left">
+                <div class="relative w-72 h-72 md:w-96 md:h-96">
+                    <!-- Decorative Circle behind -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-sky-400 to-blue-600 rounded-full opacity-20 blur-2xl animate-pulse"></div>
+                    
+                    <!-- Image Container -->
+                    <div class="relative w-full h-full rounded-full border-4 border-slate-800/50 overflow-hidden glass-card p-2">
+                        <div class="w-full h-full rounded-full overflow-hidden bg-slate-800 relative group">
+                            <!-- Placeholder Image: Replace src with actual photo URL -->
+                            <img src="hero.png" 
+                                 alt="Fardin Ahmed" 
+                                 class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                            
+                            <!-- Overlay (Optional) -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Badge -->
+                    <div class="absolute bottom-4 right-4 md:right-8 bg-slate-800 border border-slate-700 p-3 rounded-lg shadow-xl animate-float" style="animation-delay: 1s;">
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                            <span class="text-xs font-bold text-white">Fardin Ahmed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-slate-500 hidden lg:block">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-slate-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal-left">
+                    <h2 class="text-sky-400 font-bold tracking-wide uppercase mb-3 text-sm">About Me</h2>
+                    <h3 class="text-3xl md:text-4xl font-heading font-bold text-white mb-6">Strategic HR Partner for Modern Organizations</h3>
+                    <p class="text-slate-400 text-lg leading-relaxed mb-6">
+                        I am a dynamic and goal-oriented HR professional with extensive experience in HR operations, payroll, recruitment, employee relations, and compliance management.
+                    </p>
+                    <p class="text-slate-400 text-lg leading-relaxed mb-8">
+                        My expertise lies in navigating the complexities of <span class="text-sky-400 font-semibold">Bangladesh Labour Law 2006</span> and <span class="text-sky-400 font-semibold">Labour Rules 2015</span> to ensure organizational integrity while fostering a positive work environment.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="p-4 glass-card rounded-lg">
+                            <i class="fas fa-briefcase text-sky-400 text-2xl mb-2"></i>
+                            <h4 class="text-white font-bold text-xl">5+ Years</h4>
+                            <p class="text-slate-500 text-sm">Experience</p>
+                        </div>
+                        <div class="p-4 glass-card rounded-lg">
+                            <i class="fas fa-industry text-sky-400 text-2xl mb-2"></i>
+                            <h4 class="text-white font-bold text-xl">Garments</h4>
+                            <p class="text-slate-500 text-sm">& Textile Sector</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative reveal">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-sky-400/20 to-transparent rounded-2xl transform rotate-3"></div>
+                    <div class="glass-card p-8 rounded-2xl relative border border-slate-700">
+                        <h4 class="text-xl font-heading font-bold mb-6 border-b border-slate-700 pb-4">Key Focus Areas</h4>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-sky-400 mt-1 mr-3"></i>
+                                <div>
+                                    <strong class="text-slate-200 block">Labour Law Compliance</strong>
+                                    <span class="text-slate-400 text-sm">Expert navigation of legal frameworks and audits.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-sky-400 mt-1 mr-3"></i>
+                                <div>
+                                    <strong class="text-slate-200 block">Payroll & Benefits</strong>
+                                    <span class="text-slate-400 text-sm">Managing complex payroll structures utilizing KORMEE.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-sky-400 mt-1 mr-3"></i>
+                                <div>
+                                    <strong class="text-slate-200 block">Talent Management</strong>
+                                    <span class="text-slate-400 text-sm">Recruitment, manpower planning, and training.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-sky-400 mt-1 mr-3"></i>
+                                <div>
+                                    <strong class="text-slate-200 block">Conflict Resolution</strong>
+                                    <span class="text-slate-400 text-sm">Grievance handling and disciplinary actions.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-slate-900/50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-sky-400 font-bold tracking-wide uppercase mb-3 text-sm">Expertise</h2>
+                <h3 class="text-3xl md:text-4xl font-heading font-bold text-white">Professional & Technical Skills</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Technical Skills -->
+                <div class="reveal-left">
+                    <h4 class="text-xl font-bold text-white mb-6 flex items-center">
+                        <i class="fas fa-laptop-code text-sky-400 mr-3"></i> Technical Proficiency
+                    </h4>
+                    <div class="space-y-6">
+                        <!-- Skill Item -->
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-base font-medium text-slate-300">Microsoft Excel (Advanced)</span>
+                                <span class="text-sm font-medium text-sky-400">95%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2.5">
+                                <div class="bg-sky-400 h-2.5 rounded-full skill-bar-fill" data-width="95%"></div>
+                            </div>
+                        </div>
+                        <!-- Skill Item -->
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-base font-medium text-slate-300">Payroll Management</span>
+                                <span class="text-sm font-medium text-sky-400">90%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2.5">
+                                <div class="bg-sky-400 h-2.5 rounded-full skill-bar-fill" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <!-- Skill Item -->
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-base font-medium text-slate-300">HR Analytics</span>
+                                <span class="text-sm font-medium text-sky-400">85%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2.5">
+                                <div class="bg-sky-400 h-2.5 rounded-full skill-bar-fill" data-width="85%"></div>
+                            </div>
+                        </div>
+                         <!-- Skill Item -->
+                         <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-base font-medium text-slate-300">Pivot Tables & Macros</span>
+                                <span class="text-sm font-medium text-sky-400">90%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2.5">
+                                <div class="bg-sky-400 h-2.5 rounded-full skill-bar-fill" data-width="90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Professional Skills -->
+                <div class="reveal">
+                    <h4 class="text-xl font-bold text-white mb-6 flex items-center">
+                        <i class="fas fa-users-cog text-sky-400 mr-3"></i> Functional Competencies
+                    </h4>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="glass-card p-4 rounded-lg text-center hover:bg-slate-800 transition-colors">
+                            <i class="fas fa-balance-scale text-3xl text-sky-400 mb-3 block"></i>
+                            <span class="text-slate-300 font-medium">Compliance Management</span>
+                        </div>
+                        <div class="glass-card p-4 rounded-lg text-center hover:bg-slate-800 transition-colors">
+                            <i class="fas fa-user-plus text-3xl text-sky-400 mb-3 block"></i>
+                            <span class="text-slate-300 font-medium">Recruitment</span>
+                        </div>
+                        <div class="glass-card p-4 rounded-lg text-center hover:bg-slate-800 transition-colors">
+                            <i class="fas fa-chalkboard-teacher text-3xl text-sky-400 mb-3 block"></i>
+                            <span class="text-slate-300 font-medium">Training & Dev</span>
+                        </div>
+                        <div class="glass-card p-4 rounded-lg text-center hover:bg-slate-800 transition-colors">
+                            <i class="fas fa-gavel text-3xl text-sky-400 mb-3 block"></i>
+                            <span class="text-slate-300 font-medium">Disciplinary Action</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-sky-400 font-bold tracking-wide uppercase mb-3 text-sm">Career Journey</h2>
+                <h3 class="text-3xl md:text-4xl font-heading font-bold text-white">Professional Experience</h3>
+            </div>
+
+            <div class="relative">
+                <!-- Vertical Line -->
+                <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-slate-700"></div>
+
+                <div class="space-y-12">
+                    <!-- Job 1 -->
+                    <div class="relative flex flex-col md:flex-row items-center justify-between group reveal">
+                        <div class="hidden md:block w-5/12 text-right pr-8">
+                            <h4 class="text-xl font-bold text-white">Assistant Manager – Human Resources</h4>
+                            <p class="text-sky-400 font-semibold mt-1">Meghna Group of Industries</p>
+                        </div>
+                        
+                        <!-- Dot -->
+                        <div class="absolute left-[-5px] md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-sky-400 rounded-full border-4 border-slate-900 z-10"></div>
+                        
+                        <div class="w-full md:w-5/12 pl-8">
+                            <div class="md:hidden mb-2">
+                                <h4 class="text-xl font-bold text-white">Assistant Manager – Human Resources</h4>
+                                <p class="text-sky-400 font-semibold">Meghna Group of Industries</p>
+                            </div>
+                            <div class="glass-card p-6 rounded-lg border-l-4 border-sky-400">
+                                <span class="text-xs font-mono text-slate-400 mb-2 block"><i class="far fa-calendar-alt mr-2"></i>Sep 2025 – Present</span>
+                                <ul class="list-disc list-inside text-slate-300 space-y-2 text-sm">
+                                    <li>Leading HR operations for large workforce.</li>
+                                    <li>Payroll & benefits management through KORMEE.</li>
+                                    <li>Labour law compliance & audit management.</li>
+                                    <li>Handling employee relations & disciplinary actions.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job 2 -->
+                    <div class="relative flex flex-col md:flex-row items-center justify-between group reveal">
+                        <div class="w-full md:w-5/12 text-left md:text-right md:pr-8 pl-8 md:pl-0 order-2 md:order-1">
+                            <div class="md:hidden mb-2">
+                                <h4 class="text-xl font-bold text-white">Assistant Manager – HR & Compliance</h4>
+                                <p class="text-sky-400 font-semibold">Asrotex Group</p>
+                            </div>
+                            <div class="glass-card p-6 rounded-lg border-l-4 md:border-l-0 md:border-r-4 border-sky-400">
+                                <span class="text-xs font-mono text-slate-400 mb-2 block"><i class="far fa-calendar-alt mr-2"></i>Dec 2024 – Sep 2025</span>
+                                <p class="text-slate-300 text-sm">Managed comprehensive compliance strategies and HR operational workflows during this tenure.</p>
+                            </div>
+                        </div>
+
+                        <!-- Dot -->
+                        <div class="absolute left-[-5px] md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-slate-600 group-hover:bg-sky-400 transition-colors rounded-full border-4 border-slate-900 z-10 order-1 md:order-2"></div>
+
+                        <div class="hidden md:block w-5/12 pl-8 order-3">
+                            <h4 class="text-xl font-bold text-white">Assistant Manager – HR & Compliance</h4>
+                            <p class="text-sky-400 font-semibold mt-1">Asrotex Group</p>
+                        </div>
+                    </div>
+
+                    <!-- Job 3 -->
+                    <div class="relative flex flex-col md:flex-row items-center justify-between group reveal">
+                        <div class="hidden md:block w-5/12 text-right pr-8">
+                            <h4 class="text-xl font-bold text-white">Executive – HR & Compliance</h4>
+                            <p class="text-sky-400 font-semibold mt-1">Asrotex Group</p>
+                        </div>
+                        
+                        <div class="absolute left-[-5px] md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-slate-600 group-hover:bg-sky-400 transition-colors rounded-full border-4 border-slate-900 z-10"></div>
+                        
+                        <div class="w-full md:w-5/12 pl-8">
+                            <div class="md:hidden mb-2">
+                                <h4 class="text-xl font-bold text-white">Executive – HR & Compliance</h4>
+                                <p class="text-sky-400 font-semibold">Asrotex Group</p>
+                            </div>
+                            <div class="glass-card p-6 rounded-lg border-l-4 border-sky-400">
+                                <span class="text-xs font-mono text-slate-400 mb-2 block"><i class="far fa-calendar-alt mr-2"></i>May 2022 – Dec 2024</span>
+                                <p class="text-slate-300 text-sm">Focused on core HR execution, grievance handling, and assisting in manpower planning.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job 4: JL FASHION LIMITED -->
+                    <div class="relative flex flex-col md:flex-row items-center justify-between group reveal">
+                        <div class="w-full md:w-5/12 text-left md:text-right md:pr-8 pl-8 md:pl-0 order-2 md:order-1">
+                            <div class="md:hidden mb-2">
+                                <h4 class="text-xl font-bold text-white">Executive- HR & Compliance</h4>
+                                <p class="text-sky-400 font-semibold">JL FASHION LIMITED</p>
+                            </div>
+                            <div class="glass-card p-6 rounded-lg border-l-4 md:border-l-0 md:border-r-4 border-sky-400">
+                                <span class="text-xs font-mono text-slate-400 mb-2 block"><i class="far fa-calendar-alt mr-2"></i>Dec 2020 – May 2022</span>
+                                <p class="text-slate-300 text-sm"><i class="fas fa-map-marker-alt mr-2 text-sky-400"></i>Gazipur District, Dhaka</p>
+                                <p class="text-slate-300 text-sm mt-2">Oversaw compliance audits and day-to-day HR administrative functions.</p>
+                            </div>
+                        </div>
+
+                        <!-- Dot -->
+                        <div class="absolute left-[-5px] md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-slate-600 group-hover:bg-sky-400 transition-colors rounded-full border-4 border-slate-900 z-10 order-1 md:order-2"></div>
+
+                        <div class="hidden md:block w-5/12 pl-8 order-3">
+                            <h4 class="text-xl font-bold text-white">Executive- HR & Compliance</h4>
+                            <p class="text-sky-400 font-semibold mt-1">JL FASHION LIMITED</p>
+                        </div>
+                    </div>
+
+                    <!-- Job 5: ODESSA FASHIONS LTD -->
+                    <div class="relative flex flex-col md:flex-row items-center justify-between group reveal">
+                        <div class="hidden md:block w-5/12 text-right pr-8">
+                            <h4 class="text-xl font-bold text-white">Officer- HR, Admin & Compliance</h4>
+                            <p class="text-sky-400 font-semibold mt-1">ODESSA FASHIONS LTD</p>
+                        </div>
+                        
+                        <div class="absolute left-[-5px] md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-slate-600 group-hover:bg-sky-400 transition-colors rounded-full border-4 border-slate-900 z-10"></div>
+                        
+                        <div class="w-full md:w-5/12 pl-8">
+                            <div class="md:hidden mb-2">
+                                <h4 class="text-xl font-bold text-white">Officer- HR, Admin & Compliance</h4>
+                                <p class="text-sky-400 font-semibold">ODESSA FASHIONS LTD</p>
+                            </div>
+                            <div class="glass-card p-6 rounded-lg border-l-4 border-sky-400">
+                                <span class="text-xs font-mono text-slate-400 mb-2 block"><i class="far fa-calendar-alt mr-2"></i>May 2020 – Nov 2020</span>
+                                <p class="text-slate-300 text-sm"><i class="fas fa-map-marker-alt mr-2 text-sky-400"></i>Gazipur District, Dhaka</p>
+                                <p class="text-slate-300 text-sm mt-2">Managed administrative tasks and assisted in compliance documentation.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Certifications -->
+    <section id="education" class="py-24 bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <!-- Education -->
+                <div class="reveal-left">
+                    <h3 class="text-2xl font-heading font-bold text-white mb-8 border-l-4 border-sky-400 pl-4">Education</h3>
+                    <div class="space-y-6">
+                        <div class="glass-card p-6 rounded-lg">
+                            <h4 class="text-lg font-bold text-white">PGD in Human Resources Management</h4>
+                            <p class="text-slate-400 text-sm mb-2">Academy of Business Professionals (ABP)</p>
+                        </div>
+                        <div class="glass-card p-6 rounded-lg">
+                            <h4 class="text-lg font-bold text-white">LLM & LLB</h4>
+                            <p class="text-slate-400 text-sm mb-2">City University (BD)</p>
+                            <span class="text-xs text-sky-400 bg-sky-400/10 px-2 py-1 rounded">Law & Compliance Foundation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="reveal">
+                    <h3 class="text-2xl font-heading font-bold text-white mb-8 border-l-4 border-sky-400 pl-4">Certifications</h3>
+                    <div class="glass-card p-8 rounded-lg">
+                        <ul class="space-y-4">
+                            <li class="flex items-center text-slate-300">
+                                <i class="fas fa-certificate text-sky-400 mr-3 text-sm"></i> HR Expert in Excel Programme
+                            </li>
+                            <li class="flex items-center text-slate-300">
+                                <i class="fas fa-certificate text-sky-400 mr-3 text-sm"></i> Labour Law & Rules Masterclass
+                            </li>
+                            <li class="flex items-center text-slate-300">
+                                <i class="fas fa-certificate text-sky-400 mr-3 text-sm"></i> Practical HR Budget
+                            </li>
+                            <li class="flex items-center text-slate-300">
+                                <i class="fas fa-certificate text-sky-400 mr-3 text-sm"></i> Computer Office Application
+                            </li>
+                             <li class="flex items-center text-slate-300">
+                                <i class="fas fa-certificate text-sky-400 mr-3 text-sm"></i> Work Breakdown Structure
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-slate-900 relative">
+        <!-- Decoration -->
+        <div class="absolute top-0 w-full h-px bg-gradient-to-r from-transparent via-sky-400/20 to-transparent"></div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-2xl p-8 md:p-12 text-center reveal">
+                <h2 class="text-3xl font-heading font-bold text-white mb-4">Let's Connect</h2>
+                <p class="text-slate-400 mb-10">Open for opportunities in HR Leadership & Compliance roles.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <!-- Phone -->
+                    <a href="tel:01960935657" class="group p-6 rounded-xl bg-slate-800/50 hover:bg-slate-800 transition-all border border-slate-700 hover:border-sky-400/50">
+                        <div class="w-12 h-12 bg-sky-400/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-sky-400 group-hover:text-slate-900 transition-colors text-sky-400">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h4 class="text-white font-medium mb-1">Phone</h4>
+                        <p class="text-slate-400 text-sm">01960935657</p>
+                    </a>
+
+                    <!-- Email -->
+                    <div class="group p-6 rounded-xl bg-slate-800/50 hover:bg-slate-800 transition-all border border-slate-700 hover:border-sky-400/50 cursor-pointer" onclick="copyEmail()">
+                        <div class="w-12 h-12 bg-sky-400/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-sky-400 group-hover:text-slate-900 transition-colors text-sky-400">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h4 class="text-white font-medium mb-1">Email</h4>
+                        <p class="text-slate-400 text-sm break-all">adv.fardin.cu@gmail.com</p>
+                        <span id="copy-msg" class="text-xs text-sky-400 mt-2 block opacity-0 transition-opacity">Copied!</span>
+                    </div>
+
+                    <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/in/fardin-ahmed-646915229" target="_blank" class="group p-6 rounded-xl bg-slate-800/50 hover:bg-slate-800 transition-all border border-slate-700 hover:border-sky-400/50">
+                        <div class="w-12 h-12 bg-sky-400/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-sky-400 group-hover:text-slate-900 transition-colors text-sky-400">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <h4 class="text-white font-medium mb-1">LinkedIn</h4>
+                        <p class="text-slate-400 text-sm">View Profile</p>
+                    </a>
+                </div>
+
+                <div class="text-slate-500 text-sm">
+                    <p><i class="fas fa-map-marker-alt mr-2"></i>Dhaka, Bangladesh</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 py-8 border-t border-slate-800 text-center">
+        <p class="text-slate-500 text-sm">
+            &copy; <script>document.write(new Date().getFullYear())</script> Fardin Ahmed. All rights reserved.
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Copy Email Functionality
+        function copyEmail() {
+            const email = "adv.fardin.cu@gmail.com";
+            navigator.clipboard.writeText(email).then(() => {
+                const msg = document.getElementById('copy-msg');
+                msg.classList.remove('opacity-0');
+                setTimeout(() => {
+                    msg.classList.add('opacity-0');
+                }, 2000);
+            });
+        }
+
+        // Download Resume (Placeholder alert)
+        function downloadResume() {
+            // Ideally, this would link to a PDF file
+            alert("Resume download functionality would link to your PDF file here.");
+        }
+
+        // Intersection Observer for Scroll Animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        
+                        // If it's the skills section, animate bars
+                        if(entry.target.closest('#skills')) {
+                            const bars = entry.target.querySelectorAll('.skill-bar-fill');
+                            bars.forEach(bar => {
+                                const width = bar.getAttribute('data-width');
+                                bar.style.width = width;
+                            });
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.reveal, .reveal-left');
+            revealElements.forEach(el => observer.observe(el));
+        });
+
+        // Navbar blur effect on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+</body>
+</html>
